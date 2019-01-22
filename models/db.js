@@ -30,7 +30,6 @@ class Db{
            }
         }
 
-        console.log(`INSERT INTO ${table} (${key}) VALUES ${insertValues} RETURNING *`);
         return this.pool.query(`INSERT INTO ${table} (${key}) VALUES ${insertValues} RETURNING *`, (err, result) => {
             if (err) {
                 console.error('Error executing query', err.stack)

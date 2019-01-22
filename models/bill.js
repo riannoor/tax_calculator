@@ -19,7 +19,11 @@ class Bill extends Db{
                 values.forEach(value => {
                     value.push(result.rows[0].id);
                 });
-                return super.create(this.itemTableName, key, values, callback);
+                return super.create(this.itemTableName, key, values, (err, result) => {
+                    if(result){
+                        return this.getById(result[0].bill_id, callback);
+                    }
+                });
             }
         });
     }
