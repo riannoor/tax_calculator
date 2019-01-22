@@ -17,11 +17,18 @@ const up = () => {
       name VARCHAR(255) NOT NULL,
       created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
       modified_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-    ); 
+    );
     CREATE TABLE IF NOT EXISTS
     bills(
       id SERIAL PRIMARY KEY,
+      created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+      modified_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    ); 
+    CREATE TABLE IF NOT EXISTS
+    items(
+      id SERIAL PRIMARY KEY,
       tax_code_id SERIAL REFERENCES master_tax_codes(id) ON DELETE CASCADE ON UPDATE CASCADE,
+      bill_id SERIAL REFERENCES bills(id) ON DELETE CASCADE ON UPDATE CASCADE,
       name VARCHAR(255) NOT NULL,
       price INTEGER NOT NULL,
       created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -64,7 +71,7 @@ const insertSeeds = () => {
  * Drop Tables
  */
 const down = () => {
-  const queryText = 'DROP TABLE IF EXISTS master_tax_codes, bills';
+  const queryText = 'DROP TABLE IF EXISTS master_tax_codes, bills, items';
   pool.query(queryText)
     .then((res) => {
       console.log(res);
