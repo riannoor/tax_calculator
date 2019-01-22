@@ -4,6 +4,7 @@ Database:
 
 1.master_tax_codes
 Master table for tax codes
+
 | index | name | Description |
 | --- | --- | --- |
 | **PK**  | `id` | The tax codes |
@@ -14,6 +15,7 @@ Master table for tax codes
 
 2.bills
 Table to save bill id
+
 | index | name | Description |
 | --- | --- | --- |
 | **PK**  | `id` | Bill id |
@@ -23,6 +25,7 @@ Table to save bill id
 
 3.items
 Save items from users input
+
 | index | name | Description |
 | --- | --- | --- |
 | **PK**  | `id` | item id |
