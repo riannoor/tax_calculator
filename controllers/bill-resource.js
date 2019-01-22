@@ -3,7 +3,7 @@ const Bill = require('../models/bill');
 
 class BillResource{
     index(req, res){
-        res.send('respond with a resource');
+        res.send('please specify bill id');
     }
 
     store(req,res){
@@ -36,7 +36,9 @@ class BillResource{
                 return res.status(500).json({ error: 'failed to get the bill' });
             }
             else{
-                console.log(result);
+                if(result.length == 0)
+                    return res.status(404).json({ error: 'bill not found' });
+
                 return res.json(this._countBill(result));
             }
         });
@@ -78,6 +80,9 @@ class BillResource{
                 return res.status(500).json({ error: 'failed to get the bill' });
             }
             else{
+                if(result.length == 0)
+                    return res.status(404).json({ error: 'bill not found' });
+
                 return res.status(200).json(this._countBill(result));
             }
         });

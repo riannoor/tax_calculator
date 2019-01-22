@@ -30,9 +30,9 @@ class Bill extends Db{
                 console.error('Error executing query', err.stack)
                 return callback(err, null);
             }
-            else if(result.rowCount == 0 ){
-                console.error('items not found', err.stack)
-                return callback({message: 'items not found'}, null);
+            else if(result.rows.length == 0 ){
+                console.error('items not found')
+                return callback(null, []);
             }
             else{
                 key += ', bill_id'

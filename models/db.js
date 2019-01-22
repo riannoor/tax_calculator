@@ -76,6 +76,7 @@ class Db{
                 return callback(err, null);
             }
             else{
+                console.log(result);
                 return callback(null, result);
             }
         });
