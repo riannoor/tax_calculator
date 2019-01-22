@@ -9,6 +9,7 @@ class Bill extends Db{
     }
     
     create(key, values, callback){
+        //insert bill then insert items with bill id
         return this.pool.query(`INSERT INTO ${this.tableName} DEFAULT VALUES RETURNING *`, (err, result) => {
             if (err) {
                 console.error('Error executing query', err.stack)
@@ -29,6 +30,7 @@ class Bill extends Db{
     }
 
     update(billId, key, values, callback){
+        //delete the current items then insert new one
         return this.pool.query(`DELETE FROM ${this.itemTableName} WHERE bill_id = ${billId}`, (err, result) => {
             if (err) {
                 console.error('Error executing query', err.stack)
